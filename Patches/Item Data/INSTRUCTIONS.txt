@@ -1,0 +1,403 @@
++-------------------------------------------+
+|               INSTRUCTIONS                |
++-------------------------------------------+
+
+- What is this?
+This is item data from Gen 1-7 extracted from Leon's Base (full credits to him!). These files also add TM/HM updated descriptions
+and pointers, something which Leon may have forgotten to add. To see a list of items added, scroll to the bottom! I extracted the
+data since I needed it, and not the whole CFRU + DPE base. I thought it would be useful to someone else too!
+
+- How to insert (MAKE A BACKUP OF YOUR BASE ROM BEFORE INSERTING!)
+Adding data:
+ Open up the "Item Hex Data.bin" file (in HxD) in the folder "Actual Item Data". Select all (Ctrl + A), copy (Ctrl + C), and open your 
+ base ROM (BPRE0) also in HxD. MAKE SURE YOU'RE ROM IS EXPANDED TO 32 MB! Goto (Ctrl + G) the offset 0x13C0000, and 
+ paste (Ctrl + B, NOT Ctrl + V) the data. MAKE SURE THAT THE OFFSET IS 0x13C0000, OR THE DATA WILL NOT WORK! Don't forget to save!
+
+Changing Pointers/Limiters
+ For Item Data:
+  Find all pointers of the old data and change them to your new one. Simply (in HxD), open up the replace (Ctrl + R) window,
+  type "28 B0 3D 08" in "Search for:" and type "00 00 3C 09" in "Replace with:"; don't forgot to select "Hex-values" in "Datatype" and
+  "All" in "Search directories". Click on "Replace all". A window will pop-up telling that 15 pointers have been updated. Click "Ok".
+  Don't forget to save!
+
+ For Item Images/Palletes:
+  There is only 1 pointer to this data, at 0x9899C. Replace (Ctrl + B, NOT Ctrl + V) the original pointer with the pointer 
+  to your new image/palette data, that is, "00 81 3C 09". Don't forget to save!
+
+ For limiters:
+  At 0x9A8AE, replace (Ctrl + B, NOT Ctrl + V) "81 42 01 D8" with "00 00 00 00". Don't forget to save!
+
+  At 0x98998, replace (Ctrl + B, NOT Ctrl + V) "77 01" with your new number of items in hexadecimal, little endian form, 
+  that is, "EE 02". Don't forget to save!
+
+- Making these edits compatible with the CFRU / DPE
+When pasting these files, remember to delete the old ones first, and not make new ones as these are one-to-one replacement files:
+
+ DPE (If you're not using Dynamic Pokémon Expansion, ignore this step, and go to CFRU instead!):
+  -Copy the "items.h" file from the folder "Replacement Files > DPE" and paste it in your DPE master folder > include.
+  -Copy the "Evolution Table.c" file from the folder "Replacement Files > DPE", and paste it in your
+    DPE master folder > src.
+
+ CFRU:
+  -Copy the "item_tables.s" file from the folder "Replacement Files > CFRU" and paste it in your 
+   CFRU master folder > assembly > data.
+  -Copy the "items.h" file from the folder "Replacement Files > CFRU" and paste it in your 
+   CFRU master folder > include > constants.
+  -Copy the "asm_defines.s" file from the folder "Replacement Files > CFRU" and paste it in your 
+   CFRU master folder.
+  -Copy the "routinepointers" file from the folder "Replacement Files > CFRU" and paste it in your 
+   CFRU master folder.
+  -Copy the "dynamax.c" file from the folder "Replacement Files > CFRU" and paste it in your 
+   CFRU master folder > src.
+  -Copy the "item_tables.c" file from the folder "Replacement Files > CFRU" and paste it in your 
+   CFRU master folder > src > Tables.
+
+- FAQ
+Q. Any bugs?
+A. Nope! But note that the icon for "GalarCrown" isn't availble; also that the moves "PowerUpPunch" was renamed "PowerUpHit"
+   and "Dazzling Gleam" was renamed "Dazzle Gleam" when veiwed as TM's. And ENIGMA Berry always shows up in large text. Can't seem
+   to fix it.
+
+Q. "S" of PokéBalls and "IES" of Berries?
+A. When obtaining multiple berries, the text will read BerrIES. To fix this, go to 0x3A72A2 and change the three bytes to DD D9 E7.
+   To fix the text issue of obtaining multiple Poke Balls (Player obtained Poke BallS), at 0x3A72A0, change the byte to E7.
+
+Q. Credits?
+A. Please credit Prof. Leon Dias as all the data was extracted from his base!
+
+Q. Compatibity with ongoing hacks?
+A. Yes! But you need free space 13C0000 - 13E7DC7 unfrotunately. And don't forget to update your scripts accordingly!
+
+Additionally, don't forget to compile the CFRU before testing the items. A XSE script has also been added to be manually inserted
+to check out every item in the game! And please direct any queries towards me (Upsurge#9124), AND DO NOT BOTHER SKELI OR LEON!
+If you notice a bug, please tell that to me too! To see item ID's, use HMA!
+
+- Items added
+-----------------------------
+New TMs:
+-----------------------------
+01-70. TM51-TM120
+
+-----------------------------
+New Pokeballs:
+-----------------------------
+01. Fast Ball
+02. Level Ball
+03. Lure Ball
+04. Heavy Ball
+05. Love Ball
+06. Friend Ball
+07. Moon Ball
+08. Sport Ball
+09. Beast Ball
+10. Dream Ball
+11. Park Ball
+12. Cherish Ball
+13. Dusk Ball
+14. Heal Ball
+15. Quick Ball
+
+-----------------------------
+Evolution Items:
+-----------------------------
+01. Link Cable
+02. Dusk Stone
+03. Dawn Stone
+04. Shiny Stone
+05. Oval Stone
+06. Ice Stone
+07. Sweet Apple
+08. Tart Apple
+09. Cracked Pot
+10. Chipped Pot
+11. Galarica Cuff
+12. Galarica Crown (Placeholder for Galarian Slowkings item)
+13. Protector
+14. Magmarizer
+15. Prism Scale
+16. Sachet
+17. Whipped Dream
+18. Razor Claw
+19. Razor Fang
+20. Reaper Cloth
+21. Dubious Disc
+22. Electirizer
+23. Strawberry Sweet
+24. Berry Sweet
+25. Love Sweet
+26. Clover Sweet
+27. Flower Sweet
+28. Ribbon Sweet
+29. Star Sweet
+
+-----------------------------
+Sellable Items and Consumables:
+-----------------------------
+01. Balm Mushroom
+02. Rare Bone
+03. Pearl String
+04. Big Nugget
+05. Comet Shard
+06. Honey
+07. Relic Copper
+08. Relic Silver
+09. Relic Gold
+10. Relic Vase
+11. Relic Band
+12. Relic Statue
+13. Relic Crown
+14. Big Malasada
+15. Lumiose Galette
+16. Rage Candybar
+17. Shalour Sable
+18. Old Gateau
+19. Health Wing
+20. Muscle Wing
+21. Resist Wing
+22. Genius Wing
+23. Clever Wing
+24. Swift Wing
+25. Pretty Wing
+
+-----------------------------
+Berries:
+-----------------------------
+01. Occa Berry
+02. Passho Berry
+03. Wacan Berry
+04. Rindo Berry
+05. Yache Berry
+06. Chople Berry
+07. Kebia Berry
+08. Shuca Berry
+09. Coba Berry
+10. Payapa Berry
+11. Tanga Berry
+12. Charti Berry
+13. Kasib Berry
+14. Haban Berry
+15. Colbur Berry
+16. Babiri Berry
+17. Roseli Berry
+18. Chilan Berry
+19. Micle Berry
+20. Custap Berry
+21. Jacoba Berry
+22. Rowap Berry
+23. Kee Berry
+24. Maranga Berry
+
+-----------------------------
+Battle Items:
+-----------------------------
+01. Life Orb
+02. Toxic Orb
+03. Flame Orb
+04. Expert Belt
+05. Power Herb
+06. Wide Lens
+07. Zoom Lens
+08. Destiny Knot
+09. Smooth Rock
+10. Damp Rock
+11. Heat Rock
+12. Icy Rock
+13. Big Root
+14. Light Clay
+15. Safety Goggles
+16. Rocky Helmet
+17. Weakness Policy
+18. Assault Vest
+19. Eviolite
+20. Absorb Bulb
+21. Air Balloon
+22. Adrenaline Orb
+23. Binding Band
+24. Cell Battery
+25. Eject Button
+26. Float Stone
+27. Focus Sash
+28. Grip Claw
+29. Iron Ball
+30. Lagging Tail
+31. Luminous Moss
+32. Quick Powder
+33. Metronome
+34. Muscle Band
+35. Protective Pads
+36. Red Card
+37. Ring TArget
+38. Shed Shell
+39. Snowball
+40. Sticky Barb
+41. Terrain Extender
+42. Wise Glasses
+43. Electric Seed
+44. Grassy Seed
+45. Misty Seed
+46. Psychic Seed
+47. Choice Specs
+48. Choice Scarf
+49. Black Sludge
+50. Dyanamx Candy
+51. Eject Pack
+52. Room Service
+53. Blunder Policy
+54. Heavy Duty Boots
+55. Utility Umbrella
+56. Throat Spray
+
+-----------------------------
+Key Items:
+-----------------------------
+01. Oval Charm
+02. Shiny Charm
+03. Dynamax Band
+04. Mega Ring
+05. Z-Power Ring
+06. Gracidea
+07. DNA Splicers
+08. Reveal Glass
+09. Prison Bottle
+10. Rainbow Wing
+11. Silver Wing
+12. Magma Stone
+13. N-Solarizer
+14. N-Lunarizer
+15. Sun Flute
+16. Moon Flute
+17. Light Stone
+18. Dark Stone
+
+-----------------------------
+Misc Items:
+-----------------------------
+01. Wishing Piece
+02. Odd Keystone
+03. Luck Incense
+04. Full Incense
+05. Odd Incense
+06. Pure Incense
+07. Rock Incense
+08. Rose Incense
+09. Wave Incense
+10. Bottle Cap
+11. Gold Bottle Cap
+12. Adamant Orb
+13. Lustrous Orb
+14. Griseous Orb
+15-31. Arceus Plates
+32-48. Silvally Memories
+49-52. Genesect Drives
+53-56. Oricorio Nectars
+57-74. Type Gems
+75-80. Power Items
+81. Rusted Sword
+82. Rusted Shield
+83. Skull Fossil
+84. Armor Fossil
+85. Cover Fossil
+86. Plume Fossil
+87. Jaw Fossil
+88. Sail Fossil
+89. Fossilized Bird
+90. Fossilized Fish
+91. Fossilized Drake
+92. Fossilized Dino
+93. Black Apricorn
+94. Blue Apricorn
+95. Green Apricorn
+94. Red Apricorn
+95. Pink Apricorn
+96. White Apricorn
+97. Yellow Apricorn
+
+-----------------------------
+Mega Stones:
+-----------------------------
+01. Venusaurite
+02. Charizardite X
+03. Charizardite Y
+04. Blastoisinite
+05. Beedrillite
+06. Pidgeotite
+07. Alakazite
+08. Slowbronite
+09. Gengarite
+10. Kangaskhanite
+11. Pinsirite
+12. Gyaradosite
+13. Aerodactlite
+14. Mewtwonite X
+15. Mewtwonite Y
+16. Ampharosite
+17. Steelixite
+18. Scizorite
+19. Heracronite
+20. Houndoomnite
+21. Tyranitarite
+22. Sceptilite
+23. Blazikenite
+24. Swampertite
+25. Gardevoirite
+26. Sablenite
+27. Mawilite
+28. Aggronite
+29. Medichamite
+30. Manectite
+31. Sharpedonite 
+32. Cameruptite
+33. Altarianite
+34. Banettite
+35. Absolite
+36. Glalitite
+37. Salamencite
+38. Metagrossite
+39. Latiasite
+40. Latiosite
+41. Lopunnite
+42. Garchompite
+43. Lucarionite
+44. Abomasite
+45. Galladite
+46. Audinite
+47. Diancite
+
+-----------------------------
+Z Crystals:
+-----------------------------
+01. Normalium Z
+02. Fightinium Z
+03. Flyinium Z
+04. Poisonium Z
+05. Groundium Z
+06. Rockium Z
+07. Buginium Z
+08. Ghostium Z
+09. Steelium Z
+10. Firium Z
+11. Waterium Z
+12. Grassium Z
+13. Electrium Z
+14. Psychium Z
+15. Icium Z
+16. Dragonium Z
+17. Darkium Z
+18. Fairium Z
+19. Pikanium Z
+20. Pikashunium Z
+21. Aloraichium Z
+22. Eevium Z
+23. Snorlium Z
+24. Mewnium Z
+25. Decidium Z
+26. Incinium Z
+27. Primarium Z
+28. Lycanium Z
+29. Mimikium Z
+30. Kommonium Z
+31. Tapunium Z
+32. Solganium Z
+33. Lunalium Z
+34. Marshadium Z
+35. Ultranecrozium Z

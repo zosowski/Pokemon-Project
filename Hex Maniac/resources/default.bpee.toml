@@ -1,0 +1,53 @@
+﻿
+[[NamedAnchors]]
+Name = '''data.header.romname'''
+Address = 0x000108
+Format = '''`asc`32'''
+
+[[OffsetPointer]]
+Address = 0x038850
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x0389F8
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x069188
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x069230
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x06B82C
+Offset = 0x000004
+
+[[List]]
+Name = '''pokenavTowns'''
+0 = [
+   '''LITTLEROOT TOWN''',
+   '''OLDALE TOWN''',
+   '''DEWFORD TOWN''',
+   '''LAVARIDGE TOWN''',
+   '''FALLARBOR TOWN''',
+   '''VERDANTURF TOWN''',
+   '''PACIFIDLOG TOWN''',
+   '''PETALBURG CITY''',
+   '''SLATEPORT CITY TOP''',
+   '''SLATEPORT CITY BOTTOM''',
+   '''MAUVILLE CITY LEFT''',
+   '''MAUVILLE CITY RIGHT''',
+   '''RUSTBORO CITY TOP''',
+   '''RUSTBORO CITY BOTTOM''',
+   '''FORTREE CITY''',
+   '''LILYCOVE CITY LEFT''',
+   '''LILYCOVE CITY RIGHT''',
+   '''MOSSDEEP CITY LEFT''',
+   '''MOSSDEEP CITY RIGHT''',
+   '''SOOTOPOLIS CITY''',
+   '''EVER GRANDE CITY TOP''',
+   '''EVER GRANDE CITY BOTTOM''',
+]
+

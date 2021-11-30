@@ -1,0 +1,24 @@
+[GeneralSettings]
+LogAppStartupProgress = False
+UseTableEntryHeaders = True
+AllowSingleTableMode = True
+ShowMatrixGrid = True
+ZoomLevel = 16
+MaximumDiffSegments = 1000
+CopyLimit = 40000
+AnimateScroll = True
+AutoAdjustDataWidth = True
+StretchData = True
+AllowMultipleElementsPerLine = True
+IsNewVersionAvailable = False
+LastUpdateCheck = 11/26/2021 8:16:27 AM
+AcknowledgeTutorials = False
+RecentFiles = ["C:\Users\Osowski\Documents\Pokemon Project\Complete-Fire-Red-Upgrade-master\test.gba"]
+
+[Theme]
+PrimaryColor = "#dddddd"
+BackgroundColor = "#222222"
+HueOffset= 0.1
+AccentSaturation = 0.7
+AccentValue = 0.7
+HighlightBrightness = 0.6

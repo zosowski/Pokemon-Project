@@ -1,0 +1,39 @@
+'---------------
+#dynamic 0x1000000
+#org @startCyndaquil
+lock
+checkflag 0x4001
+if 0x01 goto @look
+showpokepic 0x9B 0x0A 0x03
+msgbox @1 0x5
+compare LASTRESULT 0x01
+if 0x01 goto @yes
+hidepokepic
+release
+end
+
+#org @1
+= Choose Cyndaquil?
+
+
+#org @yes
+hidepokepic
+givepokemon 0x9B 0x5 0x0 0x0 0x0 0x0
+setflag 0x4001
+setflag 0x828
+setflag 0x829
+setflag 0x82F
+hidepokepic
+fanfare 0x0103
+msgbox @2 0x4
+waitfanfare
+closeonkeypress
+release
+end
+
+#org @look
+release
+end
+
+#org @2
+= You chose Cyndaquil!

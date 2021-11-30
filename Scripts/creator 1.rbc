@@ -1,0 +1,23 @@
+#dynamic 0x1000000
+#org @creator1
+lock
+faceplayer
+checkflag 0x828
+if 0x01 goto @1
+msgbox @3 0x2
+release
+end
+
+#org @1
+msgbox @2 0x2
+fadescreen 0x1
+warp 0x3 0x0 0xFF 0xC 0xC
+fadescreen 0x1
+release
+end
+
+#org @2
+= What an excellent choice!\pYour journey begins NOW
+
+#org @3
+= The world of Pokemon...\pToo long have it's creators taken\nadvantage of our desire to collect\land battle.\pThey have weaponized our nostalgia\nto create the same formuliac games\lyear after year in the name of\lprofit.\pThat ends now.\pThis is a pokemon adventure like\nno other.\pThe rules have changed, the\nchallenge has never been greater.\pOpen world.\pNo pokemon centers.\pNo revives.\pOne pokeball per zone.\pThis is the Pokemon adventure\nyou've been waiting for since you\lwere a kid.\pNow go, choose your starter!

@@ -1,0 +1,1 @@
+Place this .ini file in G3T's .ini place to edit items.
